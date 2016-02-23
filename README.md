@@ -20,7 +20,7 @@ $image = $basicImage->generate();
 echo $image->getHtmlTag();
 ```
 
-![alt tag](https://raw.githubusercontent.com/pehape/text-image/master/examples/assets/images/image.png)
+![alt tag](https://raw.githubusercontent.com/pehape/text-image/master/examples/assets/images/image1.png)
 
 ### Image with background ###
 

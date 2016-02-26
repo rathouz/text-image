@@ -2,7 +2,7 @@
     "name": "pehape/text-image",
     "type": "library",
     "description": "A simple PHP library to convert text to images.",
-    "keywords": "image, text, converting, gd",
+    "keywords": ["image", "text", "converting", "gd"],
     "license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
     "authors": [
         {

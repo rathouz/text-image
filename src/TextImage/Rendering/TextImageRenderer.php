@@ -130,7 +130,7 @@ class TextImageRenderer
                 break;
         }
 
-        $formatedFilename.=".".$format;
+        $formatedFilename = $tmpFilename.".".$format;
         @\rename($tmpFilename, $formatedFilename);
         \imagedestroy($image);
         return new Utils\Image($formatedFilename, $format);

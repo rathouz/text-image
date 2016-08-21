@@ -1,14 +1,5 @@
-[TextImage](http://pehape.github.io/text-image/) 
-=============
-A simple PHP library to convert text to image.
-
-## Installation ##
-
-The best way to install TextImage is using  [Composer](http://getcomposer.org/):
-
-```sh
-$ composer require pehape/text-image:~1.0
-```
+Documentation
+======
 
 ## Examples ##
 

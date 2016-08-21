@@ -98,17 +98,17 @@ class TextImage
      */
     public function __construct($text = '')
     {
-        if (\extension_loaded('gd') === FALSE) {
+        if (extension_loaded('gd') === FALSE) {
             throw new Exceptions\ExtensionException('PHP extension GD is not loaded.');
         }
 
-        if (\is_string($text) === FALSE) {
+        if (is_string($text) === FALSE) {
             throw new \BadMethodCallException('Parameter "text" must be string.');
         }
 
         $this->text = $text;
         $this->fontPath = __DIR__ . '/../fonts/open-sans/OpenSans-Regular.ttf';
-        if (\is_readable($this->fontPath) === FALSE) {
+        if (is_readable($this->fontPath) === FALSE) {
             throw new Exceptions\FileException('Directory with fonts "' . $this->fontPath . '" does not exist or is not readable.');
         }
 
@@ -141,7 +141,7 @@ class TextImage
             return [$this->text];
         }
 
-        $words = \explode($separator, $this->text);
+        $words = explode($separator, $this->text);
         $lines[0] = '';
         $lineIndex = 0;
         foreach ($words as $word) {
@@ -151,17 +151,17 @@ class TextImage
                 $lineText = ($lines[$lineIndex] === '') ? $word . ' ' . self::STRIP_DOTS : $lines[$lineIndex] . $separator . $word;
             }
 
-            $textBlock = \imagettfbbox($this->fontSize, 0, $this->fontPath, $lineText);
+            $textBlock = imagettfbbox($this->fontSize, 0, $this->fontPath, $lineText);
             if ($textBlock[2] > $this->width) {
                 $lineIndex++;
                 $lines[$lineIndex] = $word;
             } else {
-                $lines[$lineIndex] = \str_replace($separator . self::STRIP_DOTS, '', $lineText);
+                $lines[$lineIndex] = str_replace($separator . self::STRIP_DOTS, '', $lineText);
             }
         }
 
         if ($this->stripText === TRUE) {
-            $strippedText = \array_slice($lines, 0, 1);
+            $strippedText = array_slice($lines, 0, 1);
             if (count($lines) === 1) {
                 $strippedText = $lines[0];
             } else {
@@ -276,16 +276,18 @@ class TextImage
     /** @return array */
     private function getCombinedOption($option)
     {
-        if (\is_array($option) === FALSE) {
-            return \array_merge(
-                \array_fill(0, 4, $option), \array_fill(4, 2, ($option * 2))
+        if (is_array($option) === FALSE) {
+            return array_merge(
+                array_fill(0, 4, $option),
+                array_fill(4, 2, ($option * 2))
             );
         }
 
         switch (count($option)) {
             case 1:
-                return \array_merge(
-                    \array_fill(0, 4, $option[0]), \array_fill(4, 2, ($option[0] * 2))
+                return array_merge(
+                    array_fill(0, 4, $option[0]),
+                    array_fill(4, 2, ($option[0] * 2))
                 );
             case 2:
                 return [
@@ -315,8 +317,9 @@ class TextImage
                     $option[1] + $option[3],
                 ];
             default:
-                return \array_merge(
-                    \array_fill(0, 4, $option[0]), \array_fill(4, 2, ($option[0] * 2))
+                return array_merge(
+                    array_fill(0, 4, $option[0]),
+                    array_fill(4, 2, ($option[0] * 2))
                 );
         }
     }
@@ -329,10 +332,10 @@ class TextImage
      */
     private function parseCombinedOption($option, $parameter)
     {
-        if (\is_int($option) === TRUE && $option >= 0) {
+        if (is_int($option) === TRUE && $option >= 0) {
             // Valid integer
             return TRUE;
-        } else if (\is_array($option) === TRUE && count($option) < 5) {
+        } elseif (is_array($option) === TRUE && count($option) < 5) {
             // Valid array
             foreach ($option as $optionItem) {
                 if ($optionItem < 0) {
@@ -417,7 +420,7 @@ class TextImage
      */
     public function setText($text)
     {
-        if (\is_string($text) === FALSE) {
+        if (is_string($text) === FALSE) {
             throw new \BadMethodCallException('Parameter "text" must be string.');
         }
 
@@ -477,7 +480,7 @@ class TextImage
      */
     public function setFontPath($fontPath)
     {
-        if (\is_readable($fontPath) === FALSE) {
+        if (is_readable($fontPath) === FALSE) {
             throw new Exceptions\FileException('Font path "' . $fontPath . '" does not exist.');
         }
 
@@ -504,7 +507,7 @@ class TextImage
      */
     public function setWidth($width)
     {
-        if (\is_int($width) === FALSE || $width <= 0) {
+        if (is_int($width) === FALSE || $width <= 0) {
             throw new \BadMethodCallException('Width must be integer greater than zero.');
         }
 
@@ -521,7 +524,7 @@ class TextImage
      */
     public function setHeight($height)
     {
-        if (\is_int($height) === FALSE || $height <= 0) {
+        if (is_int($height) === FALSE || $height <= 0) {
             throw new \BadMethodCallException('Width must be integer greater than zero.');
         }
 

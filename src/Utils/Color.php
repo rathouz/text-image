@@ -7,7 +7,6 @@
 
 namespace Pehape\TextImage\Utils;
 
-
 /**
  * Color class represents the color.
  *
@@ -25,7 +24,7 @@ class Color
         'green' => '00FF00',
         'blue' => '0000FF',
     ];
-    
+
     /** @var string */
     private static $fallbackColor = '000000';
 
@@ -58,14 +57,13 @@ class Color
     {
         if (self::isRGB($color) === TRUE) {
             return self::getHEXFromRGB($color[0], $color[1], $color[2]);
-        } else if (self::isHEX($color) === TRUE) {
-            return \strtoupper($color);
-        } else if ($this->isString($color) === TRUE) {
+        } elseif (self::isHEX($color) === TRUE) {
+            return strtoupper($color);
+        } elseif ($this->isString($color) === TRUE) {
             return self::$stringColors[$color];
         } else {
             return self::$fallbackColor;
         }
-
     }
 
 
@@ -76,9 +74,9 @@ class Color
      */
     public static function isRGB($color)
     {
-        if (\is_array($color) === TRUE && \count($color) === 3) {
+        if (is_array($color) === TRUE && count($color) === 3) {
             foreach ($color as $colorPart) {
-                if (\is_int($colorPart) === FALSE) {
+                if (is_int($colorPart) === FALSE) {
                     return FALSE;
                 }
 
@@ -112,7 +110,7 @@ class Color
      */
     private function isString($color)
     {
-        return (\is_string($color) === TRUE) ? \array_key_exists($color, self::$stringColors) : FALSE;
+        return (is_string($color) === TRUE) ? array_key_exists($color, self::$stringColors) : FALSE;
     }
 
 
@@ -141,7 +139,6 @@ class Color
         } else {
             $this->color = self::getHEXFromRGB($color[0], $color[1], $color[2]);
         }
-
     }
 
 
@@ -156,7 +153,6 @@ class Color
         } else {
             $this->color = $color;
         }
-
     }
 
 
@@ -174,13 +170,13 @@ class Color
     /** @return bool|array */
     public static function getRGBFromHEX($color)
     {
-        if (\is_array($color) === TRUE || \preg_match('/^[0-9A-Fa-f]{6}$/', $color) !== 1) {
+        if (is_array($color) === TRUE || preg_match('/^[0-9A-Fa-f]{6}$/', $color) !== 1) {
             return FALSE;
         }
 
-        $r = \hexdec(\substr($color, 0, 2));
-        $g = \hexdec(\substr($color, 2, 2));
-        $b = \hexdec(\substr($color, 4, 2));
+        $r = hexdec(substr($color, 0, 2));
+        $g = hexdec(substr($color, 2, 2));
+        $b = hexdec(substr($color, 4, 2));
         return [$r, $g, $b];
     }
 
@@ -192,10 +188,10 @@ class Color
             return FALSE;
         }
 
-        $rh = \dechex($r);
-        $gh = \dechex($g);
-        $bh = \dechex($b);
-        return \strtoupper($rh) . \strtoupper($gh) . \strtoupper($bh);
+        $rh = dechex($r);
+        $gh = dechex($g);
+        $bh = dechex($b);
+        return strtoupper($rh) . strtoupper($gh) . strtoupper($bh);
     }
 
 
@@ -208,7 +204,7 @@ class Color
     public static function allocateToImage($image, Color $color)
     {
         $rgb = $color->getRGB();
-        return \imagecolorallocate($image, $rgb[0], $rgb[1], $rgb[2]);
+        return imagecolorallocate($image, $rgb[0], $rgb[1], $rgb[2]);
     }
 
 

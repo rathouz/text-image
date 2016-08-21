@@ -38,7 +38,7 @@ class Image
      */
     public function __construct($imagePath, $format = self::PNG)
     {
-        if (\is_file($imagePath) === FALSE) {
+        if (is_file($imagePath) === FALSE) {
             throw new Exceptions\FileException('File "' . $imagePath . '" does not exist.');
         }
 
@@ -53,7 +53,7 @@ class Image
     /** @return string */
     private function getImageFormat($path)
     {
-        return \strtolower(\pathinfo($path, PATHINFO_EXTENSION));
+        return strtolower(pathinfo($path, PATHINFO_EXTENSION));
     }
 
 
@@ -74,14 +74,14 @@ class Image
     /** @return int */
     public function getWidth()
     {
-        return \getimagesize($this->getImagePath())[0];
+        return getimagesize($this->getImagePath())[0];
     }
 
 
     /** @return int */
     public function getHeight()
     {
-        return \getimagesize($this->getImagePath())[1];
+        return getimagesize($this->getImagePath())[1];
     }
 
 
@@ -93,7 +93,7 @@ class Image
     public function setImagePath($imagePath, $format = NULL)
     {
         $format = isset($format) === FALSE ? $this->format : $format;
-        if (\is_file($imagePath) === FALSE) {
+        if (is_file($imagePath) === FALSE) {
             throw new Exceptions\FileException('File "' . $imagePath . '" does not exist.');
         }
 
@@ -116,11 +116,11 @@ class Image
      */
     public function copy($destinationPath, $override = FALSE)
     {
-        if (\is_file($destinationPath) === TRUE && $override === FALSE) {
+        if (is_file($destinationPath) === TRUE && $override === FALSE) {
             throw new Exceptions\FileException('Destination file "' . $destinationPath . '" already exist.');
         }
 
-        return @\copy($this->imagePath, $destinationPath);
+        return @copy($this->imagePath, $destinationPath);
     }
 
 
@@ -132,11 +132,11 @@ class Image
      */
     public function move($destinationPath, $override = FALSE)
     {
-        if (\is_file($destinationPath) === TRUE && $override === FALSE) {
+        if (is_file($destinationPath) === TRUE && $override === FALSE) {
             throw new Exceptions\FileException('Destination file "' . $destinationPath . '" already exist.');
         }
 
-        if (@\rename($this->imagePath, $destinationPath) === TRUE) {
+        if (@rename($this->imagePath, $destinationPath) === TRUE) {
             $this->imagePath = $destinationPath;
             return TRUE;
         }
@@ -151,8 +151,8 @@ class Image
      */
     public function getUriData()
     {
-        $data = \file_get_contents($this->imagePath);
-        return \base64_encode($data);
+        $data = file_get_contents($this->imagePath);
+        return base64_encode($data);
     }
 
 

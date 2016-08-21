@@ -66,13 +66,13 @@ class TextImageRenderer
      */
     private static function createEmptyImage($width, $height, array $border, Utils\Color $backgroundColor, Utils\Color $borderColor)
     {
-        $image = \imagecreatetruecolor($width, $height);
+        $image = imagecreatetruecolor($width, $height);
         $backColor = Utils\Color::allocateToImage($image, $backgroundColor);
         $bordColor = Utils\Color::allocateToImage($image, $borderColor);
         // Border
-        \imagefilledrectangle($image, 0, 0, $width, $height, $bordColor);
+        imagefilledrectangle($image, 0, 0, $width, $height, $bordColor);
         // Background
-        \imagefilledrectangle(
+        imagefilledrectangle(
             $image,
             $border[TextImage::OPT_LEFT],
             $border[TextImage::OPT_TOP],
@@ -97,7 +97,7 @@ class TextImageRenderer
     private static function addTextToImage($image, $text, $font, $fontSize, Utils\Color $textColor, array $offset)
     {
         $color = Utils\Color::allocateToImage($image, $textColor);
-        \imagettftext($image, $fontSize, 0, $offset[TextImage::OPT_LEFT], $offset[TextImage::OPT_TOP], $color, $font, $text);
+        imagettftext($image, $fontSize, 0, $offset[TextImage::OPT_LEFT], $offset[TextImage::OPT_TOP], $color, $font, $text);
         return $image;
     }
 
@@ -110,29 +110,29 @@ class TextImageRenderer
      */
     private static function generateRealImage($image, $format)
     {
-        $tempFile = \tmpfile();
-        $metaDatas = \stream_get_meta_data($tempFile);
+        $tempFile = tmpfile();
+        $metaDatas = stream_get_meta_data($tempFile);
         $tmpFilename = $metaDatas['uri'];
-        \fclose($tempFile);
+        fclose($tempFile);
         switch ($format) {
             case Utils\Image::PNG:
-                \imagepng($image, $tmpFilename);
+                imagepng($image, $tmpFilename);
                 break;
             case Utils\Image::JPG:
-                \imagejpeg($image, $tmpFilename);
+                imagejpeg($image, $tmpFilename);
                 break;
             case Utils\Image::GIF:
-                \imagegif($image, $tmpFilename);
+                imagegif($image, $tmpFilename);
                 break;
             default:
                 $format = Utils\Image::PNG;
-                \imagepng($image, $tmpFilename);
+                imagepng($image, $tmpFilename);
                 break;
         }
 
         $formatedFilename = $tmpFilename.".".$format;
-        @\rename($tmpFilename, $formatedFilename);
-        \imagedestroy($image);
+        @rename($tmpFilename, $formatedFilename);
+        imagedestroy($image);
         return new Utils\Image($formatedFilename, $format);
     }
 

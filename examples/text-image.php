@@ -1,6 +1,6 @@
 <?php
 
-require 'requires.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 $greyColor = Pehape\TextImage\Utils\Color::create('grey');
 $blackColor = Pehape\TextImage\Utils\Color::create('black');

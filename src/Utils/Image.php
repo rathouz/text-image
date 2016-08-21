@@ -1,13 +1,13 @@
 <?php
 
 /**
- * This file is part of the project Pehape (http://www.pehape.cz)
- * Copyright (c) 2016 Tomas Rathouz <trathouz@gmail.com>
+ * This file is part of the Pehape libraries (http://pehape.cz)
+ * Copyright (c) 2016 Tomas Rathouz <trathouz at gmail.com>
  */
 
 namespace Pehape\TextImage\Utils;
 
-use Pehape\TextImage;
+use Pehape\TextImage\Exceptions;
 
 
 /**
@@ -39,13 +39,13 @@ class Image
     public function __construct($imagePath, $format = self::PNG)
     {
         if (\is_file($imagePath) === FALSE) {
-            throw new TextImage\FileException('File "' . $imagePath . '" does not exist.');
+            throw new Exceptions\FileException('File "' . $imagePath . '" does not exist.');
         }
 
         $this->imagePath = $imagePath;
         $this->format = $this->getImageFormat($imagePath);
         if ($this->format !== $format) {
-            throw new TextImage\FileException('File format mismatch. Expected "' . $format . '" but found "' . $this->format . '".');
+            throw new Exceptions\FileException('File format mismatch. Expected "' . $format . '" but found "' . $this->format . '".');
         }
     }
 
@@ -94,12 +94,12 @@ class Image
     {
         $format = isset($format) === FALSE ? $this->format : $format;
         if (\is_file($imagePath) === FALSE) {
-            throw new TextImage\FileException('File "' . $imagePath . '" does not exist.');
+            throw new Exceptions\FileException('File "' . $imagePath . '" does not exist.');
         }
 
         $this->imagePath = $imagePath;
         if ($this->getImageFormat($imagePath) !== $format) {
-            throw new TextImage\FileException('File format mismatch. Expected "' . $format . '" but found "' . $this->format . '".');
+            throw new Exceptions\FileException('File format mismatch. Expected "' . $format . '" but found "' . $this->format . '".');
         }
 
         $this->format = $format;
@@ -117,7 +117,7 @@ class Image
     public function copy($destinationPath, $override = FALSE)
     {
         if (\is_file($destinationPath) === TRUE && $override === FALSE) {
-            throw new TextImage\FileException('Destination file "' . $destinationPath . '" already exist.');
+            throw new Exceptions\FileException('Destination file "' . $destinationPath . '" already exist.');
         }
 
         return @\copy($this->imagePath, $destinationPath);
@@ -133,7 +133,7 @@ class Image
     public function move($destinationPath, $override = FALSE)
     {
         if (\is_file($destinationPath) === TRUE && $override === FALSE) {
-            throw new TextImage\FileException('Destination file "' . $destinationPath . '" already exist.');
+            throw new Exceptions\FileException('Destination file "' . $destinationPath . '" already exist.');
         }
 
         if (@\rename($this->imagePath, $destinationPath) === TRUE) {

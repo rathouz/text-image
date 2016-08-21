@@ -139,7 +139,7 @@ class TextImageTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    /** @expectedException Pehape\TextImage\FileException */
+    /** @expectedException Pehape\TextImage\Exceptions\FileException */
     public function testSetWrongFont()
     {
         $this->textImage->setFontPath(__DIR__ . '/../../examples/assets/fonts/open-sans/unnown.ttf');

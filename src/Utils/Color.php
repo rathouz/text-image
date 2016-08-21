@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the project Pehape (http://www.pehape.cz)
- * Copyright (c) 2016 Tomas Rathouz <trathouz@gmail.com>
+ * This file is part of the Pehape libraries (http://pehape.cz)
+ * Copyright (c) 2016 Tomas Rathouz <trathouz at gmail.com>
  */
 
 namespace Pehape\TextImage\Utils;

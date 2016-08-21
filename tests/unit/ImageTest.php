@@ -28,21 +28,21 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    /** @expectedException \Pehape\TextImage\FileException */
+    /** @expectedException \Pehape\TextImage\Exceptions\FileException */
     public function testImageConstructException()
     {
         $pngImage = new Image('unknown-image');
     }
 
 
-    /** @expectedException \Pehape\TextImage\FileException */
+    /** @expectedException \Pehape\TextImage\Exceptions\FileException */
     public function testImageConstructFormatException()
     {
         $pngImage = new Image($this->assetsPath . 'image.png', 'jpg');
     }
 
 
-    /** @expectedException \Pehape\TextImage\FileException */
+    /** @expectedException \Pehape\TextImage\Exceptions\FileException */
     public function testDisableUpperFormatException()
     {
         $pngImage = new Image($this->assetsPath . 'image.png', 'PNG');
@@ -84,7 +84,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    /** @expectedException \Pehape\TextImage\FileException */
+    /** @expectedException \Pehape\TextImage\Exceptions\FileException */
     public function testSetImagePathException()
     {
         $pngImage = new Image($this->assetsPath . 'image.png');
@@ -92,7 +92,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    /** @expectedException \Pehape\TextImage\FileException */
+    /** @expectedException \Pehape\TextImage\Exceptions\FileException */
     public function testSetImageFormatException()
     {
         $pngImage = new Image($this->assetsPath . 'image.png');
@@ -129,7 +129,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    /** @expectedException \Pehape\TextImage\FileException */
+    /** @expectedException \Pehape\TextImage\Exceptions\FileException */
     public function testCopyImageExist()
     {
         $newPath = $this->outputPath . '/image.png';

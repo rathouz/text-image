@@ -1,12 +1,13 @@
 <?php
 
 /**
- * This file is part of the project Pehape (http://www.pehape.cz)
- * Copyright (c) 2016 Tomas Rathouz <trathouz@gmail.com>
+ * This file is part of the Pehape libraries (http://pehape.cz)
+ * Copyright (c) 2016 Tomas Rathouz <trathouz at gmail.com>
  */
 
 namespace Pehape\TextImage;
 
+use Pehape\TextImage\Exceptions;
 use Pehape\TextImage\Utils;
 
 
@@ -91,14 +92,14 @@ class TextImage
     /**
      * Constructor.
      * @param string $text
-     * @throws ExtensionException
+     * @throws Exceptions\ExtensionException
      * @throws \BadMethodCallException
-     * @throws FileException
+     * @throws Exceptions\FileException
      */
     public function __construct($text = '')
     {
         if (\extension_loaded('gd') === FALSE) {
-            throw new ExtensionException('PHP extension GD is not loaded.');
+            throw new Exceptions\ExtensionException('PHP extension GD is not loaded.');
         }
 
         if (\is_string($text) === FALSE) {
@@ -106,9 +107,9 @@ class TextImage
         }
 
         $this->text = $text;
-        $this->fontPath = __DIR__ . '/../../fonts/open-sans/OpenSans-Regular.ttf';
+        $this->fontPath = __DIR__ . '/../fonts/open-sans/OpenSans-Regular.ttf';
         if (\is_readable($this->fontPath) === FALSE) {
-            throw new FileException('Directory with fonts "' . $this->fontPath . '" does not exist or is not readable.');
+            throw new Exceptions\FileException('Directory with fonts "' . $this->fontPath . '" does not exist or is not readable.');
         }
 
         $this->setBackgroundColor(Utils\Color::create('white'));
@@ -123,8 +124,8 @@ class TextImage
      */
     public function generate()
     {
-        $this->lineHeight = $this->lineHeight ?: $this->fontSize + (int) ($this->fontSize / 2);
-        $this->height = $this->height ?: $this->lineHeight * $this->getLinesCount();
+        $this->lineHeight = $this->lineHeight ? : $this->fontSize + (int) ($this->fontSize / 2);
+        $this->height = $this->height ? : $this->lineHeight * $this->getLinesCount();
         return Rendering\TextImageRenderer::render($this);
     }
 
@@ -277,16 +278,14 @@ class TextImage
     {
         if (\is_array($option) === FALSE) {
             return \array_merge(
-                \array_fill(0, 4, $option),
-                \array_fill(4, 2, ($option * 2))
+                \array_fill(0, 4, $option), \array_fill(4, 2, ($option * 2))
             );
         }
 
         switch (count($option)) {
             case 1:
                 return \array_merge(
-                    \array_fill(0, 4, $option[0]),
-                    \array_fill(4, 2, ($option[0] * 2))
+                    \array_fill(0, 4, $option[0]), \array_fill(4, 2, ($option[0] * 2))
                 );
             case 2:
                 return [
@@ -317,8 +316,7 @@ class TextImage
                 ];
             default:
                 return \array_merge(
-                    \array_fill(0, 4, $option[0]),
-                    \array_fill(4, 2, ($option[0] * 2))
+                    \array_fill(0, 4, $option[0]), \array_fill(4, 2, ($option[0] * 2))
                 );
         }
     }
@@ -474,13 +472,13 @@ class TextImage
 
     /**
      * @param string $fontPath Without ending '/'
-     * @throws FileException
+     * @throws Exceptions\FileException
      * @return TextImage
      */
     public function setFontPath($fontPath)
     {
         if (\is_readable($fontPath) === FALSE) {
-            throw new FileException('Font path "' . $fontPath . '" does not exist.');
+            throw new Exceptions\FileException('Font path "' . $fontPath . '" does not exist.');
         }
 
         $this->fontPath = $fontPath;

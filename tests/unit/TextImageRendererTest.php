@@ -23,7 +23,7 @@ class TextImageRendererTest extends \PHPUnit_Framework_TestCase
     public function testRendering()
     {
         $image = $this->renderer->render($this->textImage);
-        $this->assertInstanceOf('Pehape\TextImage\Utils\Image', $image);
+        $this->assertInstanceOf('Pehape\Tools\Objects\Image', $image);
     }
 
 

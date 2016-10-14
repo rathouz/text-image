@@ -8,7 +8,7 @@
 namespace Pehape\TextImage\Rendering;
 
 use Pehape\TextImage\TextImage;
-use Pehape\TextImage\Utils;
+use Pehape\Tools\Objects;
 
 
 /**
@@ -23,7 +23,7 @@ class TextImageRenderer
     /**
      * Render image.
      * @param TextImage $textImage
-     * @return Utils\Image
+     * @return Objects\Image
      */
     public static function render(TextImage $textImage)
     {
@@ -60,15 +60,15 @@ class TextImageRenderer
      * @param int $width
      * @param int $height
      * @param array $border
-     * @param Utils\Color $backgroundColor
-     * @param Utils\Color $borderColor
+     * @param Objects\Color $backgroundColor
+     * @param Objects\Color $borderColor
      * @return resource
      */
-    private static function createEmptyImage($width, $height, array $border, Utils\Color $backgroundColor, Utils\Color $borderColor)
+    private static function createEmptyImage($width, $height, array $border, Objects\Color $backgroundColor, Objects\Color $borderColor)
     {
         $image = imagecreatetruecolor($width, $height);
-        $backColor = Utils\Color::allocateToImage($image, $backgroundColor);
-        $bordColor = Utils\Color::allocateToImage($image, $borderColor);
+        $backColor = Objects\Color::allocateToImage($image, $backgroundColor);
+        $bordColor = Objects\Color::allocateToImage($image, $borderColor);
         // Border
         imagefilledrectangle($image, 0, 0, $width, $height, $bordColor);
         // Background
@@ -90,13 +90,13 @@ class TextImageRenderer
      * @param string $text
      * @param string $font
      * @param int $fontSize
-     * @param Utils\Color $textColor
+     * @param Objects\Color $textColor
      * @param array $offset
      * @return resource
      */
-    private static function addTextToImage($image, $text, $font, $fontSize, Utils\Color $textColor, array $offset)
+    private static function addTextToImage($image, $text, $font, $fontSize, Objects\Color $textColor, array $offset)
     {
-        $color = Utils\Color::allocateToImage($image, $textColor);
+        $color = Objects\Color::allocateToImage($image, $textColor);
         imagettftext($image, $fontSize, 0, $offset[TextImage::OPT_LEFT], $offset[TextImage::OPT_TOP], $color, $font, $text);
         return $image;
     }
@@ -115,17 +115,17 @@ class TextImageRenderer
         $tmpFilename = $metaDatas['uri'];
         fclose($tempFile);
         switch ($format) {
-            case Utils\Image::PNG:
+            case Objects\Image::PNG:
                 imagepng($image, $tmpFilename);
                 break;
-            case Utils\Image::JPG:
+            case Objects\Image::JPG:
                 imagejpeg($image, $tmpFilename);
                 break;
-            case Utils\Image::GIF:
+            case Objects\Image::GIF:
                 imagegif($image, $tmpFilename);
                 break;
             default:
-                $format = Utils\Image::PNG;
+                $format = Objects\Image::PNG;
                 imagepng($image, $tmpFilename);
                 break;
         }
@@ -133,7 +133,7 @@ class TextImageRenderer
         $formatedFilename = $tmpFilename.".".$format;
         @rename($tmpFilename, $formatedFilename);
         imagedestroy($image);
-        return new Utils\Image($formatedFilename, $format);
+        return new Objects\Image($formatedFilename, $format);
     }
 
 

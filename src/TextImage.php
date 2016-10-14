@@ -8,7 +8,7 @@
 namespace Pehape\TextImage;
 
 use Pehape\TextImage\Exceptions;
-use Pehape\TextImage\Utils;
+use Pehape\Tools\Objects;
 
 
 /**
@@ -23,7 +23,7 @@ class TextImage
     private $text;
 
     /** @var string PNG has the best quality */
-    private $format = Utils\Image::PNG;
+    private $format = Objects\Image::PNG;
 
     /** @var int */
     private $width = self::DEFAULT_WIDTH;
@@ -34,13 +34,13 @@ class TextImage
     /** @var int */
     private $lineHeight;
 
-    /** @var Utils\Color */
+    /** @var Objects\Color */
     private $backgroundColor;
 
-    /** @var Utils\Color */
+    /** @var Objects\Color */
     private $textColor;
 
-    /** @var Utils\Color */
+    /** @var Objects\Color */
     private $borderColor;
 
     /** @var int|array */
@@ -112,15 +112,15 @@ class TextImage
             throw new Exceptions\FileException('Directory with fonts "' . $this->fontPath . '" does not exist or is not readable.');
         }
 
-        $this->setBackgroundColor(Utils\Color::create('white'));
-        $this->setTextColor(Utils\Color::create('black'));
-        $this->setBorderColor(Utils\Color::create('grey'));
+        $this->setBackgroundColor(Objects\Color::create('white'));
+        $this->setTextColor(Objects\Color::create('black'));
+        $this->setBorderColor(Objects\Color::create('grey'));
     }
 
 
     /**
      * Generate final image.
-     * @return Utils\Image
+     * @return Objects\Image
      */
     public function generate()
     {
@@ -189,14 +189,14 @@ class TextImage
     }
 
 
-    /** @return Utils\Color */
+    /** @return Objects\Color */
     public function getBackgroundColor()
     {
         return $this->backgroundColor;
     }
 
 
-    /** @return Utils\Color */
+    /** @return Objects\Color */
     public function getTextColor()
     {
         return $this->textColor;
@@ -360,7 +360,7 @@ class TextImage
     }
 
 
-    /** @return Utils\Color */
+    /** @return Objects\Color */
     public function getBorderColor()
     {
         return $this->borderColor;
@@ -441,10 +441,10 @@ class TextImage
 
 
     /**
-     * @param Utils\Color $backgroundColor
+     * @param Objects\Color $backgroundColor
      * @return TextImage
      */
-    public function setBackgroundColor(Utils\Color $backgroundColor)
+    public function setBackgroundColor(Objects\Color $backgroundColor)
     {
         $this->backgroundColor = $backgroundColor;
         return $this;
@@ -452,10 +452,10 @@ class TextImage
 
 
     /**
-     * @param Utils\Color $textColor
+     * @param Objects\Color $textColor
      * @return TextImage
      */
-    public function setTextColor(Utils\Color $textColor)
+    public function setTextColor(Objects\Color $textColor)
     {
         $this->textColor = $textColor;
         return $this;
@@ -561,10 +561,10 @@ class TextImage
 
 
     /**
-     * @param Utils\Color $borderColor
+     * @param Objects\Color $borderColor
      * @return TextImage
      */
-    public function setBorderColor(Utils\Color $borderColor)
+    public function setBorderColor(Objects\Color $borderColor)
     {
         $this->borderColor = $borderColor;
         return $this;

@@ -10,9 +10,9 @@ namespace Pehape\TextImage\Exceptions;
 // @codingStandardsIgnoreStart
 
 /** PHP Extensions exception. */
-class ExtensionException extends \Exception {}
+class ExtensionException extends \LogicException {}
 
-/** Files operations exception. */
-class FileException extends \Exception {}
+/** PHP Extensions exception. */
+class FileException extends \RuntimeException {}
 
 // @codingStandardsIgnoreEnd

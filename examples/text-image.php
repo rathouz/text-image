@@ -2,9 +2,9 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$greyColor = Pehape\TextImage\Utils\Color::create('grey');
-$blackColor = Pehape\TextImage\Utils\Color::create('black');
-$redColor = Pehape\TextImage\Utils\Color::create('blue');
+$greyColor = Pehape\Tools\Objects\Color::create('grey');
+$blackColor = Pehape\Tools\Objects\Color::create('black');
+$redColor = Pehape\Tools\Objects\Color::create('blue');
 
 // Basic image
 $basicImage = new \Pehape\TextImage\TextImage('Basic image');

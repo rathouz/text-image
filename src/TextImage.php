@@ -141,7 +141,7 @@ class TextImage
     private function wrapText($separator = self::SEP_SPACE)
     {
         if ($this->wrapText === FALSE && $this->stripText === FALSE) {
-            return [$this->text];
+            return explode("\n", $this->text);
         }
 
         $words = explode($separator, $this->text);

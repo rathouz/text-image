@@ -37,6 +37,9 @@ class TextImage
     /** @var Objects\Color */
     private $backgroundColor;
 
+    /** @var bool */
+    private $transparentBackground = FALSE;
+
     /** @var Objects\Color */
     private $textColor;
 
@@ -414,6 +417,15 @@ class TextImage
 
 
     /**
+     * @return bool
+     */
+    public function getTransparentBackground()
+    {
+        return $this->transparentBackground;
+    }
+
+
+    /**
      * @param string $text
      * @throws \BadMethodCallException
      * @return TextImage
@@ -447,6 +459,7 @@ class TextImage
     public function setBackgroundColor(Objects\Color $backgroundColor)
     {
         $this->backgroundColor = $backgroundColor;
+        $this->transparentBackground = FALSE;
         return $this;
     }
 
@@ -606,6 +619,17 @@ class TextImage
     public function setStripTextString($stripTextString)
     {
         $this->stripTextString = $stripTextString;
+        return $this;
+    }
+
+
+    /**
+     * @param bool $isTransparent
+     * @return TextImage
+     */
+    public function setTransparentBackground($isTransparent)
+    {
+        $this->transparentBackground = $isTransparent;
         return $this;
     }
 

@@ -32,7 +32,8 @@ class TextImageRenderer
             $textImage->getFullHeight(),
             $textImage->getBorder(),
             $textImage->getBackgroundColor(),
-            $textImage->getBorderColor()
+            $textImage->getBorderColor(),
+            $textImage->getTransparentBackground()
         );
         $textOffset = $textImage->getTextOffset();
         foreach ($textImage->getLines() as $line) {
@@ -62,24 +63,35 @@ class TextImageRenderer
      * @param array $border
      * @param Objects\Color $backgroundColor
      * @param Objects\Color $borderColor
+     * @param bool $transparentBackground
      * @return resource
      */
-    private static function createEmptyImage($width, $height, array $border, Objects\Color $backgroundColor, Objects\Color $borderColor)
+    private static function createEmptyImage($width, $height, array $border, Objects\Color $backgroundColor, Objects\Color $borderColor, $transparentBackground)
     {
         $image = imagecreatetruecolor($width, $height);
-        $backColor = Objects\Color::allocateToImage($image, $backgroundColor);
-        $bordColor = Objects\Color::allocateToImage($image, $borderColor);
-        // Border
-        imagefilledrectangle($image, 0, 0, $width, $height, $bordColor);
-        // Background
-        imagefilledrectangle(
-            $image,
-            $border[TextImage::OPT_LEFT],
-            $border[TextImage::OPT_TOP],
-            ($width - $border[TextImage::OPT_RIGHT]),
-            ($height - $border[TextImage::OPT_BOTTOM]),
-            $backColor
-        );
+        
+        if ($transparentBackground === TRUE) {
+            imagealphablending($image, false);
+            $transparency = imagecolorallocatealpha($image, 0, 0, 0, 127);
+            imagefill($image, 0, 0, $transparency);
+            imagesavealpha($image, true);
+        } else {
+            $backColor = Objects\Color::allocateToImage($image, $backgroundColor);
+            $bordColor = Objects\Color::allocateToImage($image, $borderColor);
+
+            // Border
+            imagefilledrectangle($image, 0, 0, $width, $height, $bordColor);
+            // Background
+            imagefilledrectangle(
+                $image,
+                $border[TextImage::OPT_LEFT],
+                $border[TextImage::OPT_TOP],
+                ($width - $border[TextImage::OPT_RIGHT]),
+                ($height - $border[TextImage::OPT_BOTTOM]),
+                $backColor
+            );
+        }
+        
         return $image;
     }
 

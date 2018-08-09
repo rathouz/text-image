@@ -1,5 +1,5 @@
 {
-    "name": "pehape/text-image",
+    "name": "rathouz/text-image",
     "type": "library",
     "description": "A simple PHP library to convert text to images.",
     "keywords": ["image", "text", "converting", "gd"],
@@ -8,16 +8,16 @@
         {
             "name": "Tomas Rathouz",
             "email": "trathouz@gmail.com",
-            "homepage": "http://pehape.cz"
+            "homepage": "http://rathouz.cz"
         }
     ],
     "support": {
         "email": "trathouz@gmail.com",
-        "issues": "https://github.com/pehape/data-tree/issues/"
+        "issues": "https://github.com/rathouz/data-tree/issues/"
     },
     "require": {
         "php": ">=5.4.0",
-        "pehape/tools": "^1.0"
+        "rathouz/tools": "^2.0"
     },
     "require-dev": {
         "codeception/codeception": "2.1.*",
@@ -25,7 +25,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Pehape\\TextImage\\": "src"
+            "Rathouz\\TextImage\\": "src"
         },
         "classmap": [
             "src/Exceptions/exceptions.php"
@@ -33,7 +33,7 @@
     },
     "scripts": {
         "test": "vendor\\bin\\codecept run --env local",
-        "syntax": "vendor\\bin\\phpcs --standard=vendor/pehape/tools/assets/coding-standards/standards.xml --colors --encoding=utf-8 -sp src/",
-        "syntax-fix": "vendor\\bin\\phpcbf --standard=vendor/pehape/tools/assets/coding-standards/standards.xml src/"
+        "syntax": "vendor\\bin\\phpcs --standard=vendor/rathouz/tools/assets/coding-standards/standards.xml --colors --encoding=utf-8 -sp src/",
+        "syntax-fix": "vendor\\bin\\phpcbf --standard=vendor/rathouz/tools/assets/coding-standards/standards.xml src/"
     }
 }

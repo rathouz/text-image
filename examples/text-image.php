@@ -2,59 +2,59 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$greyColor = Pehape\Tools\Objects\Color::create('grey');
-$blackColor = Pehape\Tools\Objects\Color::create('black');
-$redColor = Pehape\Tools\Objects\Color::create('blue');
+$greyColor = Rathouz\Tools\Objects\Color::create('grey');
+$blackColor = Rathouz\Tools\Objects\Color::create('black');
+$redColor = Rathouz\Tools\Objects\Color::create('blue');
 
 // Basic image
-$basicImage = new \Pehape\TextImage\TextImage('Basic image');
+$basicImage = new \Rathouz\TextImage\TextImage('Basic image');
 $image1 = $basicImage->generate();
 
 // Image with background
-$backgroundImage = new \Pehape\TextImage\TextImage('Image with background');
+$backgroundImage = new \Rathouz\TextImage\TextImage('Image with background');
 $backgroundImage->setBackgroundColor($greyColor);
 $image2 = $backgroundImage->generate();
 
 // Image border
-$borderedImage = new \Pehape\TextImage\TextImage('Image with border');
+$borderedImage = new \Rathouz\TextImage\TextImage('Image with border');
 $borderedImage->setBackgroundColor($greyColor);
 $borderedImage->setBorder(3);
 $borderedImage->setBorderColor($blackColor);
 $image3 = $borderedImage->generate();
 
 // Text color
-$coloredImage = new \Pehape\TextImage\TextImage('Image with blue text color');
+$coloredImage = new \Rathouz\TextImage\TextImage('Image with blue text color');
 $coloredImage->setBackgroundColor($greyColor);
 $coloredImage->setTextColor($redColor);
 $image4 = $coloredImage->generate();
 
 // More padding
-$paddedImage = new \Pehape\TextImage\TextImage('Image with custom padding');
+$paddedImage = new \Rathouz\TextImage\TextImage('Image with custom padding');
 $paddedImage->setBackgroundColor($greyColor);
 $paddedImage->setPadding(30);
 $image5 = $paddedImage->generate();
 
 // Wrapping
-$wrappedImage = new \Pehape\TextImage\TextImage('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac eros finibus, pretium erat non, fermentum leo. Curabitur hendrerit lobortis risus.');
+$wrappedImage = new \Rathouz\TextImage\TextImage('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac eros finibus, pretium erat non, fermentum leo. Curabitur hendrerit lobortis risus.');
 $wrappedImage->setBackgroundColor($greyColor);
 $wrappedImage->setPadding(30);
 $image6 = $wrappedImage->generate();
 
 // Line height
-$lineImage = new \Pehape\TextImage\TextImage('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac eros finibus, pretium erat non, fermentum leo. Curabitur hendrerit lobortis risus.');
+$lineImage = new \Rathouz\TextImage\TextImage('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac eros finibus, pretium erat non, fermentum leo. Curabitur hendrerit lobortis risus.');
 $lineImage->setBackgroundColor($greyColor);
 $lineImage->setPadding(30);
 $lineImage->setLineHeight(40);
 $image7 = $lineImage->generate();
 
 // Stripping
-$strippedImage = new \Pehape\TextImage\TextImage('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac eros finibus, pretium erat non, fermentum leo. Curabitur hendrerit lobortis risus.');
+$strippedImage = new \Rathouz\TextImage\TextImage('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac eros finibus, pretium erat non, fermentum leo. Curabitur hendrerit lobortis risus.');
 $strippedImage->setBackgroundColor($greyColor);
 $strippedImage->setStripText(TRUE);
 $image8 = $strippedImage->generate();
 
 // Set custom font
-$customFontImage = new \Pehape\TextImage\TextImage('OpenSans-Bold.ttf');
+$customFontImage = new \Rathouz\TextImage\TextImage('OpenSans-Bold.ttf');
 $customFontImage->setFontPath(__DIR__ . '/assets/fonts/open-sans/OpenSans-Bold.ttf');
 $customFontImage->setBackgroundColor($greyColor);
 $image9 = $customFontImage->generate();
@@ -78,17 +78,17 @@ $image9 = $customFontImage->generate();
 
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
-            <h2 class="text-primary">Library pehape/text-image</h2>
+            <h2 class="text-primary">Library rathouz/text-image</h2>
             
             <div class="content">
-            <p>Converting text to images using pehape/text-image library.</p>
+            <p>Converting text to images using rathouz/text-image library.</p>
             
             <h3>Default image</h3>
             <?php echo $image1->getHtmlTag(); ?>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     
-<pre>$basicImage = new \Pehape\TextImage\TextImage('Basic image');
+<pre>$basicImage = new \Rathouz\TextImage\TextImage('Basic image');
 $image = $basicImage->generate();
 echo $image->getHtmlTag();</pre>
 
@@ -100,7 +100,7 @@ echo $image->getHtmlTag();</pre>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     
-<pre>$backgroundImage = new \Pehape\TextImage\TextImage('Image with background');
+<pre>$backgroundImage = new \Rathouz\TextImage\TextImage('Image with background');
 $backgroundImage->setBackgroundColor($greyColor);
 $image2 = $backgroundImage->generate();
 echo $image2->getHtmlTag();</pre>
@@ -113,7 +113,7 @@ echo $image2->getHtmlTag();</pre>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     
-<pre>$borderedImage = new \Pehape\TextImage\TextImage('Image with border');
+<pre>$borderedImage = new \Rathouz\TextImage\TextImage('Image with border');
 $borderedImage->setBackgroundColor($greyColor);
 $borderedImage->setBorder(3);
 $borderedImage->setBorderColor($blackColor);
@@ -128,7 +128,7 @@ echo $image3->getHtmlTag();</pre>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     
-<pre>$coloredImage = new \Pehape\TextImage\TextImage('Image with blue text color');
+<pre>$coloredImage = new \Rathouz\TextImage\TextImage('Image with blue text color');
 $coloredImage->setBackgroundColor($greyColor);
 $coloredImage->setTextColor($redColor);
 $image4 = $coloredImage->generate();
@@ -142,7 +142,7 @@ echo $image4->getHtmlTag();</pre>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     
-<pre>$paddedImage = new \Pehape\TextImage\TextImage('Image with custom padding');
+<pre>$paddedImage = new \Rathouz\TextImage\TextImage('Image with custom padding');
 $paddedImage->setBackgroundColor($greyColor);
 $paddedImage->setPadding(30);
 $image5 = $paddedImage->generate();
@@ -156,7 +156,7 @@ echo $image5->getHtmlTag();</pre>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     
-<pre>$wrappedImage = new \Pehape\TextImage\TextImage('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac eros finibus, pretium erat non, fermentum leo. Curabitur hendrerit lobortis risus.');
+<pre>$wrappedImage = new \Rathouz\TextImage\TextImage('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac eros finibus, pretium erat non, fermentum leo. Curabitur hendrerit lobortis risus.');
 $wrappedImage->setBackgroundColor($greyColor);
 $wrappedImage->setPadding(30);
 $image6 = $wrappedImage->generate();
@@ -170,7 +170,7 @@ echo $image6->getHtmlTag();</pre>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     
-<pre>$lineImage = new \Pehape\TextImage\TextImage('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac eros finibus, pretium erat non, fermentum leo. Curabitur hendrerit lobortis risus.');
+<pre>$lineImage = new \Rathouz\TextImage\TextImage('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac eros finibus, pretium erat non, fermentum leo. Curabitur hendrerit lobortis risus.');
 $lineImage->setBackgroundColor($greyColor);
 $lineImage->setPadding(30);
 $lineImage->setLineHeight(40);
@@ -185,7 +185,7 @@ echo $image7->getHtmlTag();</pre>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     
-<pre>$strippedImage = new \Pehape\TextImage\TextImage('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac eros finibus, pretium erat non, fermentum leo. Curabitur hendrerit lobortis risus.');
+<pre>$strippedImage = new \Rathouz\TextImage\TextImage('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac eros finibus, pretium erat non, fermentum leo. Curabitur hendrerit lobortis risus.');
 $strippedImage->setBackgroundColor($greyColor);
 $strippedImage->setStripText(TRUE);
 $image8 = $strippedImage->generate();
@@ -199,7 +199,7 @@ echo $image8->getHtmlTag();</pre>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     
-<pre>$customFontImage = new \Pehape\TextImage\TextImage('OpenSans-Bold.ttf');
+<pre>$customFontImage = new \Rathouz\TextImage\TextImage('OpenSans-Bold.ttf');
 $customFontImage->setFontPath(__DIR__ . '/assets/fonts/open-sans/OpenSans-Bold.ttf');
 $customFontImage->setBackgroundColor($greyColor);
 $image9 = $customFontImage->generate();

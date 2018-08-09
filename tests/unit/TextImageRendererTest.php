@@ -1,6 +1,6 @@
 <?php
 
-use Pehape\TextImage;
+use Rathouz\TextImage;
 
 
 class TextImageRendererTest extends \PHPUnit_Framework_TestCase
@@ -23,7 +23,7 @@ class TextImageRendererTest extends \PHPUnit_Framework_TestCase
     public function testRendering()
     {
         $image = $this->renderer->render($this->textImage);
-        $this->assertInstanceOf('Pehape\Tools\Objects\Image', $image);
+        $this->assertInstanceOf('Rathouz\Tools\Objects\Image', $image);
     }
 
 

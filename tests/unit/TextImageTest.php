@@ -1,6 +1,6 @@
 <?php
 
-use Pehape\TextImage;
+use Rathouz\TextImage;
 
 
 class TextImageTest extends \PHPUnit_Framework_TestCase
@@ -139,7 +139,7 @@ class TextImageTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    /** @expectedException Pehape\TextImage\Exceptions\FileException */
+    /** @expectedException Rathouz\TextImage\Exceptions\FileException */
     public function testSetWrongFont()
     {
         $this->textImage->setFontPath(__DIR__ . '/../../examples/assets/fonts/open-sans/unnown.ttf');
